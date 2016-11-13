@@ -26,8 +26,8 @@ class PluginAppModel
 		{
 			if ( ( strtolower($_SESSION['class']) != 'connexion' ) && ( strtolower($_SESSION['class']) != 'e404' ) )
 			{
-				header('Location: '. ROOT_HTTP . 'connexion/') ;
-				exit() ;
+				header('Location: '. ROOT_HTTP . 'connexion/');
+				exit();
 			}
 		}
 	}

@@ -14,7 +14,7 @@ class CoreAppController
 		/*
 		 * Configuration requise pour la class
 		 */
-		$this->aView = array() ;
+		$this->aView = array();
 		$this->mSetLayout = USE_LAYOUT ;
 		$this->mSetView = USE_VIEW ;
 		$this->bAjaxMethod = false ;
@@ -35,7 +35,7 @@ class CoreAppController
 		/*
 		 * Instancie le controller
 		 */
-		$this->oController = new $this->sClass( ) ;
+		$this->oController = new $this->sClass( );
 	}
 
 	public function startMethod()
@@ -45,8 +45,8 @@ class CoreAppController
 		 */
 		if ( method_exists( $this->sClass, '_start' ) )
 		{
-			$this->oController->_start() ;
-			DebugAppModel::logThis( __FILE__, __LINE__, 'Appelle de la method [ _start ] du controller [ ' . $this->sClass . ' ]' ) ;
+			$this->oController->_start();
+			DebugAppModel::logThis( __FILE__, __LINE__, 'Appelle de la method [ _start ] du controller [ ' . $this->sClass . ' ]' );
 		}
 	}
 
@@ -57,8 +57,8 @@ class CoreAppController
 		 */
 		if ( method_exists( $this->sClass, '_end' ) )
 		{
-			$this->oController->_end() ;
-			DebugAppModel::logThis( __FILE__, __LINE__, 'Appelle de la method [ _end ] du controller [ ' . $this->sClass . ' ]' ) ;
+			$this->oController->_end();
+			DebugAppModel::logThis( __FILE__, __LINE__, 'Appelle de la method [ _end ] du controller [ ' . $this->sClass . ' ]' );
 		}
 	}
 
@@ -67,10 +67,10 @@ class CoreAppController
 		/*
 		 * Lance la fonction demandé par l'utilisateur
 		 */
-		$this->oController->{$this->sMethod}() ;
-		DebugAppModel::logThis( __FILE__, __LINE__, 'Appelle de la method [ ' . $this->sMethod . ' ] du controller [ ' . $this->sClass . ' ]' ) ;
+		$this->oController->{$this->sMethod}();
+		DebugAppModel::logThis( __FILE__, __LINE__, 'Appelle de la method [ ' . $this->sMethod . ' ] du controller [ ' . $this->sClass . ' ]' );
 	}
-	
+
 	public function getControllerParam()
 	{
 		/*
@@ -79,7 +79,7 @@ class CoreAppController
 		 */
 		if ( (isset($this->oController->bAjaxMethod)) && ($this->oController->bAjaxMethod===true) )
 		{
-			DebugAppModel::logThis( __FILE__, __LINE__, 'bAjaxMethod = true (Ajax Method)' ) ;
+			DebugAppModel::logThis( __FILE__, __LINE__, 'bAjaxMethod = true (Ajax Method)' );
 			$this->mSetView = false ;
 			$this->mSetLayout = false ;
 		}
@@ -103,6 +103,6 @@ class CoreAppController
 		else $sSetView = $this->mSetView ;
 		$mSetView = $this->mSetView ;
 		$sAView = (empty( $this->aView )) ? 'empty' : 'not empty' ;
-		DebugAppModel::logThis( __FILE__, __LINE__, 'mSetLayout: ' . $sSetLayout . ' - mSetView: ' . $sSetView . ' - aView: ' . $sAView ) ;
+		DebugAppModel::logThis( __FILE__, __LINE__, 'mSetLayout: ' . $sSetLayout . ' - mSetView: ' . $sSetView . ' - aView: ' . $sAView );
 	}
 }

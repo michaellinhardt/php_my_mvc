@@ -10,23 +10,23 @@ class UserModel extends CoreModel
 	
 	public function getAllJob()
 	{
-		return $this->oPDO->query('SELECT * FROM bo_job')->fetchAll(PDO::FETCH_ASSOC) ;
+		return $this->oPDO->query('SELECT * FROM bo_job')->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
 	public function getAllFai()
 	{
-		return $this->oPDO->query('SELECT * FROM bo_fai')->fetchAll(PDO::FETCH_ASSOC) ;
+		return $this->oPDO->query('SELECT * FROM bo_fai')->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
 	public function getAllMobile()
 	{
-		return $this->oPDO->query('SELECT * FROM bo_mobile')->fetchAll(PDO::FETCH_ASSOC) ;
+		return $this->oPDO->query('SELECT * FROM bo_mobile')->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
 	public function DebugUserReset()
 	{
-		unset($_SESSION['iDebugUser']) ;
-		unset($_SESSION['iDeleteUser']) ;
+		unset($_SESSION['iDebugUser']);
+		unset($_SESSION['iDeleteUser']);
 		return true ;
 	}
 	
@@ -149,7 +149,7 @@ class UserModel extends CoreModel
 			$oRequest->execute();
 		}
 		if (!isset($iTel)) $iTel = '' ;
-		$iTelType = substr($iTel, 0, 2) ; // Récupère les deux premier chiffre du num
+		$iTelType = substr($iTel, 0, 2); // Récupère les deux premier chiffre du num
 		if ($iTelType=='06')
 		{
 			$iTelPor = $iTel ;
@@ -165,7 +165,7 @@ class UserModel extends CoreModel
 			$iTelPor = '' ;
 			$iTelFix = '' ;
 		}
-		$oRequest = $this->oPDO->prepare($sRequest) ;
+		$oRequest = $this->oPDO->prepare($sRequest);
 		// Construit les info de la table bo_user
 		$oRequest->bindValue(':tel_por', $iTelPor);
 		$oRequest->bindValue(':tel_fix', $iTelFix);
@@ -176,7 +176,7 @@ class UserModel extends CoreModel
 		// Récupère le role
 		$aRole = $this->oPDO->query('SELECT RID FROM users_roles WHERE UID='.$aUsers['uid'])->fetch(PDO::FETCH_ASSOC);
 		$sModel = ($aRole['RID']=='3') ? 'b2b' : 'b2c' ;
-		$oRequest->bindValue(':model', $sModel) ;
+		$oRequest->bindValue(':model', $sModel);
 		$oRequest->bindValue(':registered', date('Y-m-d', $aUsers['created']) );
 		// Execute la requete
 		$oRequest->execute();

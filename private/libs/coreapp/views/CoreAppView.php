@@ -21,18 +21,18 @@ class CoreAppView
 		/*
 		 * Démarre l'affichage du layout et/ou de la view
 		 */
-		$this->getPath() ;
+		$this->getPath();
 		if ( ($this->mSetLayout) && ($this->mSetView) )
 			/*
 			 * Affiche les deux
 			 * NB: Pour afficher la view il faut insérer dans le layout la commande
 			 * <?php $this->incView(); ?>
 			 */
-			$this->incLayout() ;
-		elseif ( (!$this->mSetLayout) && ($this->mSetView) ) $this->incView() ;
-		else $this->incLayout() ;
+			$this->incLayout();
+		elseif ( (!$this->mSetLayout) && ($this->mSetView) ) $this->incView();
+		else $this->incLayout();
 		// Si le layout est inclue, effectu des vérification entre les parametre de l'application et le codage du développeur
-		if ( $this->mSetLayout ) $this->controlDisplay() ;
+		if ( $this->mSetLayout ) $this->controlDisplay();
 	}
 
 	public function controlDisplay()
@@ -41,17 +41,17 @@ class CoreAppView
 		 * Cette fonction stop l'application SI ->
 		 */
 		// La method $this->incView() ne se trouve dans le layout, alors que mSetView = true
-		if ( (!$this->bViewIsDisplayed) && ($this->mSetView) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'La method incView() ne se trouve pas dans le layout alors que mSetView = true' ) ;
+		if ( (!$this->bViewIsDisplayed) && ($this->mSetView) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'La method incView() ne se trouve pas dans le layout alors que mSetView = true' );
 		// La method $this->head() ne se trouve dans le layout, alors que AUTO_INC_JS = true
-		if ( (!$this->bHeadIsCalled) && (AUTO_INC_JS) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'La method head() ne se trouve pas dans le layout alors que AUTO_INC_JS = true' ) ;
+		if ( (!$this->bHeadIsCalled) && (AUTO_INC_JS) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'La method head() ne se trouve pas dans le layout alors que AUTO_INC_JS = true' );
 		// La method $this->head() ne se trouve dans le layout, alors que AUTO_INC_CSS = true
-		if ( (!$this->bHeadIsCalled) && (AUTO_INC_CSS) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'La method head() ne se trouve pas dans le layout alors que AUTO_INC_CSS = true' ) ;
+		if ( (!$this->bHeadIsCalled) && (AUTO_INC_CSS) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'La method head() ne se trouve pas dans le layout alors que AUTO_INC_CSS = true' );
 		// La method $this->head() ne se trouve dans le layout, alors que USE_PHPLANGTOJS = true
-		if ( (!$this->bHeadIsCalled) && (USE_PHPLANGTOJS) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'La method head() ne se trouve pas dans le layout alors que USE_PHPLANGTOJS = true' ) ;
+		if ( (!$this->bHeadIsCalled) && (USE_PHPLANGTOJS) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'La method head() ne se trouve pas dans le layout alors que USE_PHPLANGTOJS = true' );
 		// La config USE_PHPLANGTOJS = true alors que USE_LANG_MODEL = false
-		if ( (!USE_LANG_MODEL) && (USE_PHPLANGTOJS) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'USE_PHPLANGTOJS est sur true alors que USE_LANG_MODEL est sur false' ) ;
+		if ( (!USE_LANG_MODEL) && (USE_PHPLANGTOJS) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'USE_PHPLANGTOJS est sur true alors que USE_LANG_MODEL est sur false' );
 		// La method $this->head() ne se trouve dans le layout, alors que HTTP_PATH_TO_JS = true
-		if ( (!$this->bHeadIsCalled) && (HTTP_PATH_TO_JS) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'La method head() ne se trouve pas dans le layout alors que HTTP_PATH_TO_JS = true' ) ;
+		if ( (!$this->bHeadIsCalled) && (HTTP_PATH_TO_JS) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'La method head() ne se trouve pas dans le layout alors que HTTP_PATH_TO_JS = true' );
 	}
 
 	public function head()
@@ -116,7 +116,7 @@ class CoreAppView
 		 * Affiche la view uniquement si mSetView !== false
 		 */
 		$this->bViewIsDisplayed = true ;
-		if ( is_string( $this->mSetView ) ) include ($this->mSetView) ;
+		if ( is_string( $this->mSetView ) ) include ($this->mSetView);
 	}
 
 	public function incLayout()
@@ -125,16 +125,16 @@ class CoreAppView
 		 * Affiche le layout uniquement si mSetLayout !== false
 		 */
 		$this->bLayoutIsDisplayed = true ;
-		if ( is_string( $this->mSetLayout ) ) include ($this->mSetLayout) ;
+		if ( is_string( $this->mSetLayout ) ) include ($this->mSetLayout);
 	}
 
 	public function getLang()
 	{
 		if ( USE_LANG_MODEL )
 		{
-			$this->oLang = new LanguageAppModel( ) ;
-			$this->oLang->setLang() ;
-			$this->oLang->getLang() ;
+			$this->oLang = new LanguageAppModel( );
+			$this->oLang->setLang();
+			$this->oLang->getLang();
 		}
 	}
 
@@ -143,10 +143,10 @@ class CoreAppView
 		/*
 		 * Détermine les chemin d'acces de la view et du layout
 		 */
-		if ( is_string( $this->mSetLayout ) ) $this->setLayoutPath( PRIVATE_PATH . '/views/' . $this->mSetLayout ) ;
-		elseif ( $this->mSetLayout === true ) $this->setLayoutPath( PRIVATE_PATH . '/views/layout.php' ) ;
-		if ( is_string( $this->mSetView ) ) $this->setViewPath( PRIVATE_PATH . '/views/' . $this->mSetView ) ;
-		elseif ( $this->mSetView === true ) $this->setViewPath( PRIVATE_PATH . '/views/' . strtolower( $_SESSION['class'] ) . '/' . strtolower( $_SESSION['method'] ) . '.php' ) ;
+		if ( is_string( $this->mSetLayout ) ) $this->setLayoutPath( PRIVATE_PATH . '/views/' . $this->mSetLayout );
+		elseif ( $this->mSetLayout === true ) $this->setLayoutPath( PRIVATE_PATH . '/views/layout.php' );
+		if ( is_string( $this->mSetView ) ) $this->setViewPath( PRIVATE_PATH . '/views/' . $this->mSetView );
+		elseif ( $this->mSetView === true ) $this->setViewPath( PRIVATE_PATH . '/views/' . strtolower( $_SESSION['class'] ) . '/' . strtolower( $_SESSION['method'] ) . '.php' );
 	}
 
 	public function setLayoutPath( $sPath )
@@ -154,7 +154,7 @@ class CoreAppView
 		/*
 		 * définie le chemin d'acces du Layout et controle que le fichier existe
 		 */
-		if ( !is_file( realpath( $sPath ) ) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'Fichier LAYOUT manquant: ' . $sPath ) ;
+		if ( !is_file( realpath( $sPath ) ) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'Fichier LAYOUT manquant: ' . $sPath );
 		else $this->mSetLayout = $sPath ;
 	}
 
@@ -163,7 +163,7 @@ class CoreAppView
 		/*
 		 * définie le chemin d'acces de la view et controle que le fichier existe
 		 */
-		if ( !is_file( realpath( $sPath ) ) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'Fichier VIEW manquant: ' . $sPath ) ;
+		if ( !is_file( realpath( $sPath ) ) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'Fichier VIEW manquant: ' . $sPath );
 		else $this->mSetView = $sPath ;
 	}
 	
@@ -174,8 +174,8 @@ class CoreAppView
 		 * et retourne le résultat en echo
 		 */
 		if ( !USE_LANG_MODEL )
-			DebugAppModel::StopApp( __FILE__, __LINE__, 'Impossible d\'utiliser la fonction lang() dans la view car USE_LANG_MODEL est false' ) ;
+			DebugAppModel::StopApp( __FILE__, __LINE__, 'Impossible d\'utiliser la fonction lang() dans la view car USE_LANG_MODEL est false' );
 		else
-			echo $this->oLang->lang(func_get_args()) ;
+			echo $this->oLang->lang(func_get_args());
 	}
 }

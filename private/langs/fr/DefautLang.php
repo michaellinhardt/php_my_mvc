@@ -1,6 +1,6 @@
 <?php
 $DefautLang = array(
-"defaut_titre" => "Cooliz BackOffice",
+"default_titre" => "Cooliz BackOffice",
 /*
  * Message Ajax par defaut
  */
@@ -12,4 +12,4 @@ $DefautLang = array(
  */
 "menu_log" => "Logs",
 "menu_deco" => "Deconnexion",
-) ;
+);

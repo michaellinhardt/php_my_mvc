@@ -19,7 +19,7 @@ class LogModel extends CoreModel
 			$sSQL .= ', value_' . $i . '=:value_' . $i ;
 		}
 		$sSQL .= ', ip=:ip, when=:when' ;
-		$oSQL = $oPDO->prepare($sSQL) ;
+		$oSQL = $oPDO->prepare($sSQL);
 		// Boucle destiné à logué toutes les value passé
 		for( $i = 0 ; $i<10 ; $i++)
 		{
@@ -64,7 +64,7 @@ class LogModel extends CoreModel
 		$oSQL = $this->oPDO->prepare($sSQL);
 		$oSQL->bindValue(':LDID', $_POST['iLDID']);
 		$oSQL->execute();
-		$aValue = $oSQL->fetchAll(PDO::FETCH_ASSOC) ;
+		$aValue = $oSQL->fetchAll(PDO::FETCH_ASSOC);
 		return $aValue ;
 	}
 }

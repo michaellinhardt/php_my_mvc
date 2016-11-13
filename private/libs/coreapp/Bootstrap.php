@@ -21,7 +21,7 @@ class Bootstrap
 
 	public function __construct()
 	{
-		session_start() ;
+		session_start();
 		/*
 		 * Si $_SESSION['bRequestDispatch'] = true, alors le Controller à déjà était innitialisé
 		 * Dans se cas on ne peut plus rediriger l'utilisateur que par la method
@@ -39,23 +39,23 @@ class Bootstrap
 		 * avant et/ou après chaque étape du bootstrap
 		 */
 		// Charge la config de l'application (et non du site)
-		if (method_exists('PluginAppModel', 'beforeConfig')) PluginAppModel::beforeConfig() ;
-		$this->getConfig() ;
-		if (method_exists('PluginAppModel', 'afterConfig')) PluginAppModel::afterConfig() ;
-		DebugAppModel::resetDebug() ; // Reset les log de debuguage
-		DebugAppModel::logDetail() ; // Log les détail si la config le demande
+		if (method_exists('PluginAppModel', 'beforeConfig')) PluginAppModel::beforeConfig();
+		$this->getConfig();
+		if (method_exists('PluginAppModel', 'afterConfig')) PluginAppModel::afterConfig();
+		DebugAppModel::resetDebug(); // Reset les log de debuguage
+		DebugAppModel::logDetail(); // Log les détail si la config le demande
 		// Initialise le routage (récupére la class et la method)		
-		if (method_exists('PluginAppModel', 'beforeRoutage')) PluginAppModel::beforeRoutage() ;
-		$this->setRoutage() ;
-		if (method_exists('PluginAppModel', 'afterRoutage')) PluginAppModel::afterRoutage() ;
+		if (method_exists('PluginAppModel', 'beforeRoutage')) PluginAppModel::beforeRoutage();
+		$this->setRoutage();
+		if (method_exists('PluginAppModel', 'afterRoutage')) PluginAppModel::afterRoutage();
 		// Initialise le controller
-		if (method_exists('PluginAppModel', 'beforeController')) PluginAppModel::beforeController() ;
-		$this->initController() ;
-		if (method_exists('PluginAppModel', 'afterController')) PluginAppModel::afterController() ;
+		if (method_exists('PluginAppModel', 'beforeController')) PluginAppModel::beforeController();
+		$this->initController();
+		if (method_exists('PluginAppModel', 'afterController')) PluginAppModel::afterController();
 		// Innitialise la view
-		if (method_exists('PluginAppModel', 'beforeView')) PluginAppModel::beforeView() ;
-		$this->initView() ;
-		if (method_exists('PluginAppModel', 'afterView')) PluginAppModel::afterView() ;
+		if (method_exists('PluginAppModel', 'beforeView')) PluginAppModel::beforeView();
+		$this->initView();
+		if (method_exists('PluginAppModel', 'afterView')) PluginAppModel::afterView();
 	}
 
 	private function getConfig()
@@ -64,7 +64,7 @@ class Bootstrap
 		 * Charge et applique la configuration de l'application
 		 */
 		require_once COREAPP_PATH . '/configs/CoreConfigs.php' ;
-		ini_set( 'display_errors', DISPLAY_ERRORS ) ;
+		ini_set( 'display_errors', DISPLAY_ERRORS );
 	}
 
 	private function setRoutage()
@@ -73,11 +73,11 @@ class Bootstrap
 		 * Pilote le model de routage, il permet de lire la requette HTTP de l'utilisateur
 		 * et de savoir quel couple class/method dois être lancé
 		 */
-		$this->oRoutage = new RoutageAppModel( ) ;
-		$this->oRoutage->getRequest() ;
-		$this->oRoutage->formatRequest() ;
-		$this->oRoutage->verifRequest() ;
-		$this->oRoutage->logThis() ;
+		$this->oRoutage = new RoutageAppModel( );
+		$this->oRoutage->getRequest();
+		$this->oRoutage->formatRequest();
+		$this->oRoutage->verifRequest();
+		$this->oRoutage->logThis();
 	}
 
 	private function initController()
@@ -85,20 +85,20 @@ class Bootstrap
 		/*
 		 * Instancie la class gérant les controller et la pilote
 		 */
-		$this->oController = new CoreAppController( ) ;
-		$this->oController->setConfig() ;
+		$this->oController = new CoreAppController( );
+		$this->oController->setConfig();
 		/*
 		 * $_SESSION['bRequestDispatch'] = true car à partir d'ici on ne peut plus
 		 * rediriger l'utilisateur, sauf avec la method header();
 		 */
 		$_SESSION['bRequestDispatch'] = true ;
-		$this->oController->setResponse() ;
-		$this->oController->initResponse() ;
-		$this->oController->startMethod() ;
-		$this->oController->urlMethod() ;
-		$this->oController->endMethod() ;
-		$this->oController->getControllerParam() ;
-		$this->oController->logThis() ;
+		$this->oController->setResponse();
+		$this->oController->initResponse();
+		$this->oController->startMethod();
+		$this->oController->urlMethod();
+		$this->oController->endMethod();
+		$this->oController->getControllerParam();
+		$this->oController->logThis();
 		/*
 		 * Récupére les variables à transmettre à la view
 		 */
@@ -112,7 +112,7 @@ class Bootstrap
 		/*
 		 * Instancie la class gérant la view et la pilote
 		 */
-		$this->oView = new CoreAppView( ) ;
+		$this->oView = new CoreAppView( );
 		/*
 		 * Injecte les variables du controller
 		 * NB: A propos de setLayout et setView (transmis par lecontroller)
@@ -126,7 +126,7 @@ class Bootstrap
 		/*
 		 * Pilote la class
 		 */
-		$this->oView->getLang() ;
-		$this->oView->display() ;
+		$this->oView->getLang();
+		$this->oView->display();
 	}
 }

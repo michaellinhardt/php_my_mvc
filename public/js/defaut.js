@@ -59,8 +59,8 @@ function ajaxLoading(iStatu)
 {
 	/*
 	 * Affiche ou masque la boite de chargement ajax
-	 * ajaxLoading() ; Masque la fenetre
-	 * ajaxLoading(1) ; Affiche la fenetre
+	 * ajaxLoading(); Masque la fenetre
+	 * ajaxLoading(1); Affiche la fenetre
 	 */
 	if ( (iStatu==undefined) || (iStatu==0) )
 	{
@@ -101,7 +101,7 @@ function ajaxAsync(sPath, oData, sFunc, bDisplayBox)
 				window['sDataAjaxAsync'] = sAjaxResponse ;
 			else
 			{
-				window[sFunc](sAjaxResponse) ; // Renvoie le retour du script a une fonction
+				window[sFunc](sAjaxResponse); // Renvoie le retour du script a une fonction
 				return true ;
 			}
 		},
@@ -126,7 +126,7 @@ function alertVar()
 	{
 		sVar += '[ i'+i+' ] ' + arguments[i] + "\n" ;
 	}
-	alert(sVar) ;
+	alert(sVar);
 }
 
 function emptyVar()

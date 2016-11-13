@@ -10,9 +10,9 @@ class LanguageAppModel
 		 * Charge la langue de l'application
 		 * Soit par defaut, soit par la requette de l'utilisateur
 		 */
-		if ( !isset( $_SESSION['lang'] ) ) $_SESSION['lang'] = strtolower( DEFAUT_LANG ) ;
+		if ( !isset( $_SESSION['lang'] ) ) $_SESSION['lang'] = strtolower( DEFAUT_LANG );
 		$this->sLangPath = PRIVATE_PATH . '/langs/' . $_SESSION['lang'] . '/' ;
-		if ( !is_dir( realpath( $this->sLangPath ) ) ) $_SESSION['lang'] = strtolower( DEFAUT_LANG ) ;
+		if ( !is_dir( realpath( $this->sLangPath ) ) ) $_SESSION['lang'] = strtolower( DEFAUT_LANG );
 		$this->sLangPath = PRIVATE_PATH . '/langs/' . $_SESSION['lang'] . '/' ;
 	}
 	
@@ -23,7 +23,7 @@ class LanguageAppModel
 		 * en plus de celle par defaut et de celle lié à la requette user
 		 */
 		// Récupére le nom de lang demandé
-		$sIncFile = ucfirst( strtolower( $sIncFile ) ) ;
+		$sIncFile = ucfirst( strtolower( $sIncFile ) );
 		// Vérifie que ce nom ne correspond ni a la class par defaut ni à la classe courante
 		if ( ( $sIncFile != $_SESSION['class'] ) && ( $sIncFile != 'Defaut' ) )
 		{
@@ -41,23 +41,23 @@ class LanguageAppModel
 		 * 	alors on envoie le contenue de la langue en json
 		 * Inclue également les lang demandé par la fonction $this->incLang()
 		 */
-		$sRequestLang = (isset( $_POST['PhpLangToJs'] )) ? strtolower( $_POST['PhpLangToJs'] ) : strtolower( $_SESSION['class'] ) ;
-		$sRequestLang = ucfirst( $sRequestLang ) ;
-		DebugAppModel::logThis( __FILE__, __LINE__, 'Langue chargé: ' . $_SESSION['lang'] . ' - sRequestLang: ' . $sRequestLang ) ;
+		$sRequestLang = (isset( $_POST['PhpLangToJs'] )) ? strtolower( $_POST['PhpLangToJs'] ) : strtolower( $_SESSION['class'] );
+		$sRequestLang = ucfirst( $sRequestLang );
+		DebugAppModel::logThis( __FILE__, __LINE__, 'Langue chargé: ' . $_SESSION['lang'] . ' - sRequestLang: ' . $sRequestLang );
 		if ( !is_dir( $this->sLangPath ) )
 		{
-			DebugAppModel::logThis( __FILE__, __LINE__, 'Dossier introuvable: ' . $this->sLangPath ) ;
+			DebugAppModel::logThis( __FILE__, __LINE__, 'Dossier introuvable: ' . $this->sLangPath );
 			return false ;
 		}
 		if ( !is_file( $this->sLangPath . 'DefautLang.php' ) )
 			DebugAppModel::stopApp( __FILE__, __LINE__, 'Impossible de trouver le fichier lang par defaut: DefautLang.php' );
 		else require_once $this->sLangPath . 'DefautLang.php' ;
-		if ( !is_file( $this->sLangPath . $sRequestLang . 'Lang.php' ) ) ${$sRequestLang . 'Lang'} = array() ;
+		if ( !is_file( $this->sLangPath . $sRequestLang . 'Lang.php' ) ) ${$sRequestLang . 'Lang'} = array();
 		else require_once $this->sLangPath . $sRequestLang . 'Lang.php' ;
 		/*
 		 * Merge les deux table de lang
 		 */
-		$this->aLang = array_merge( $DefautLang, ${$sRequestLang . 'Lang'} ) ;
+		$this->aLang = array_merge( $DefautLang, ${$sRequestLang . 'Lang'} );
 		/*
 		 * Inclue les lang demandé par $this->incLang();
 		 */
@@ -71,9 +71,9 @@ class LanguageAppModel
 					if (is_file($sLangFilePath))
 					{
 						require_once $sLangFilePath ;
-						$this->aLang = array_merge( $this->aLang, ${$sKey . 'Lang'}) ;
+						$this->aLang = array_merge( $this->aLang, ${$sKey . 'Lang'});
 					}
-					else DebugAppModel::stopApp(__FILE__, __LINE__, 'Impossible d\'inclure le fichier de lang: '.$sLangFilePath) ;
+					else DebugAppModel::stopApp(__FILE__, __LINE__, 'Impossible d\'inclure le fichier de lang: '.$sLangFilePath);
 				}
 			}
 		}
@@ -81,7 +81,7 @@ class LanguageAppModel
 		{
 			foreach ( $this->aLang as $sKey => $sValue )
 			{
-				$this->aLang[$sKey] = htmlentities( $sValue ) ;
+				$this->aLang[$sKey] = htmlentities( $sValue );
 			}
 		}
 	}
@@ -98,7 +98,7 @@ class LanguageAppModel
 			if ( $sKey == 0 ) $sReturn = $this->aLang[$sValue] ;
 			else
 			{
-				$sReturn = str_replace( '{' . $sKey . '}', $sValue, $sReturn ) ;
+				$sReturn = str_replace( '{' . $sKey . '}', $sValue, $sReturn );
 			}
 		}
 		return $sReturn ;

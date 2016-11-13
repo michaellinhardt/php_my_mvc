@@ -31,10 +31,10 @@ class StrModel extends CoreModel
 	
 	public function is_NumPortable( $sTel )
 	{
-		$sTel = str_replace( '.', '', $sTel ) ;
-		$sTel = str_replace( ' ', '', $sTel ) ;
-		$sTel = str_replace( ',', '', $sTel ) ;
-		$sTel = str_replace( '-', '', $sTel ) ;
+		$sTel = str_replace( '.', '', $sTel );
+		$sTel = str_replace( ' ', '', $sTel );
+		$sTel = str_replace( ',', '', $sTel );
+		$sTel = str_replace( '-', '', $sTel );
 		if ( !preg_match( '/^06\d{8}$/', $sTel ) ) return false ;
 		if ($sTel=='0600000000') return false ;
 		if ($sTel=='0611111111') return false ;
@@ -52,10 +52,10 @@ class StrModel extends CoreModel
 	
 	public function is_NumFix( $sTel )
 	{
-		$sTel = str_replace( '.', '', $sTel ) ;
-		$sTel = str_replace( ' ', '', $sTel ) ;
-		$sTel = str_replace( ',', '', $sTel ) ;
-		$sTel = str_replace( '-', '', $sTel ) ;
+		$sTel = str_replace( '.', '', $sTel );
+		$sTel = str_replace( ' ', '', $sTel );
+		$sTel = str_replace( ',', '', $sTel );
+		$sTel = str_replace( '-', '', $sTel );
 		if ( !preg_match( '/01\d{7,9}/', $sTel ) ) return false ;
 		if ($sTel=='0100000000') return false ;
 		if ($sTel=='0111111111') return false ;
@@ -89,7 +89,7 @@ class StrModel extends CoreModel
 		/*
 		 * Vérifie que la chaine contiens que des caractére Alphanumérique
 		 */
-		preg_match( '/^[[:alnum:]]+$/', $sString, $aResult ) ;
+		preg_match( '/^[[:alnum:]]+$/', $sString, $aResult );
 		if (!empty($aResult)) return true ;
 		else return false ;
 	}
@@ -99,7 +99,7 @@ class StrModel extends CoreModel
 		/*
 		 * Vérifie que la chaine contiens que des caractére Alphanumérique
 		 */
-		preg_match( '/^[[:digit:]]+$/', $sString, $aResult ) ;
+		preg_match( '/^[[:digit:]]+$/', $sString, $aResult );
 		if (!empty($aResult)) return true ;
 		else return false ;
 	}
@@ -116,13 +116,13 @@ class StrModel extends CoreModel
 		 * Génération d'un mot de pass
 		 */
 		$sCharList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@";
-		$iCharListNb = strlen($sCharList) ;
+		$iCharListNb = strlen($sCharList);
 		// On créer une boucle qui séléctionne $iNbChar fois un caractére au hasard dans la chaine
 		$sReturn = '' ;
 		for($u = 1; $u <= $iNbChar; $u++)
 		{
 			// on choisie un nombre au hasard entre 0 et le nombre de caractéres de la chaine
-			$iChar = mt_rand( 0,( $iCharListNb - 1 ) ) ;
+			$iChar = mt_rand( 0,( $iCharListNb - 1 ) );
 			// on ecrit  le résultat
 			$sReturn .= $sCharList[$iChar];
 		}
