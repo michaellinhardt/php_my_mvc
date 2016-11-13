@@ -1,0 +1,103 @@
+/*
+ * Propriété par defaut
+ */
+body, img, a, div, form, table { margin: 0; padding: 0; }
+img { border: none; }
+
+/*
+ * Propriété des fenetre ajax
+ */
+#_ajaxLoading,#_ajaxError { display: none ; }
+
+/*
+ * Divs contenant tout le site
+ */
+#_Contenu {
+	position: relative ;
+	width: 100% ;
+	margin: 0;
+	padding: 0 10px 0 10px ;
+}
+#_TopBanner {
+	display: block ;
+	width: 100% ;
+	height: 76px ;
+	background: url(../img/top/fond.png) repeat-x #DADADA ;
+	line-height: 40px ;
+	border-bottom: 1px solid #B0B0B0 ;
+}
+#_TopBannerLogo {
+	display: block ;
+	height: 40px;
+	padding-left: 110px ;
+	background: url(../img/top/logo.png) no-repeat ;
+	text-decoration: none ;
+	font-weight: bold ;
+	color: #FFF ;
+	font-size: 1.8em;
+}
+/*
+ * Top menu
+ */
+#topMenu {
+	position: absolute ;
+	top: 50px ;
+}
+#topMenu A { color: #000; }
+#rightMenu { float: right ; margin-right: 10px; }
+#rightMenu A { display: block; line-height: 40px; }
+
+/*
+ * Class "pratique"
+ */
+._Clear { visibility: hidden ; clear: both ; height: 0px; margin: 0 ; padding: 0 ; }
+
+/*
+ * Box Table
+ */
+.boxTable
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 10px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+.boxTable th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #b9c9fe;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+	color: #039;
+}
+.boxTable td
+{
+	padding: 8px;
+	background: #e8edff; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid transparent;
+}
+.boxTable tr:hover td
+{
+	background: #d0dafd;
+	color: #339;
+}
+
+/*
+ * Page de debuguages
+ */
+.debugBtn {
+	border: 1px solid black ;
+	background: #DADADA ;
+	color: #000 ;
+	text-decoration: none ;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px 5px 10px 5px;
+	margin: 0 ;
+}
