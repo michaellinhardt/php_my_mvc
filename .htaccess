@@ -1,0 +1,11 @@
+# Règles de réécriture pour Zend Framework
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* index.php
+RewriteRule index.php - [L]
+RewriteRule (public/*) - [L]
+RewriteRule (private/ajax/*) - [L]
+RewriteRule (.*) - [F]
+
+# Sécurité : Ne pas autoriser le parcours de répertoires
+Options -Indexes
