@@ -16,15 +16,12 @@
 	</head>
 	<body>
 		<!-- DIV DE CHARGEMENT AJAX ASYNC -->
-		<div id="_ajaxLoading"></div>
+		<div id="ajax_loading"></div>
 		<!-- DIV D'ERREUR AJAX -->
-		<div id="_ajaxError"><p><?php $this->lang('ajax_error')?></p></div>
+		<div id="ajax_error"><p><?php $this->lang('ajax_error')?></p></div>
 		<!-- DIV DE LA BANNIERE -->
-		<div id="_TopBanner">
-			<!-- DIV DU MENU -->
-		</div>
-		<hr class="_Clear"/>
-		<div id="_Contenu">
+		<hr class="clear"/>
+		<div id="content">
 			<?php $this->incView(); ?>
 		</div>
 	</body>

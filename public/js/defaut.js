@@ -23,7 +23,7 @@ function goHome(iStatu)
 function ajaxError()
 {
 	 // Affiche un message d'erreur Ajax
-	$('#_ajaxError').dialog('open');
+	$('#ajax_error').dialog('open');
 }
 
 function initAjaxDial()
@@ -32,7 +32,7 @@ function initAjaxDial()
 	 * Innitialise la boite de chargement Ajax
 	 * et la boite d'erreur par defaut Ajax
 	 */
-	$('#_ajaxLoading').dialog({
+	$('#ajax_loading').dialog({
 		title: '&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ' + oLang['ajax_loading'],
 		modal: true,
 		resizable: false,
@@ -41,11 +41,11 @@ function initAjaxDial()
 		autoOpen: false
 	});
 	// Masque le bouton pour fermer la boite
-	$('#_ajaxLoading').parent().find('.ui-dialog-titlebar-close').css('display', 'none');
+	$('#ajax_loading').parent().find('.ui-dialog-titlebar-close').css('display', 'none');
 	/*
 	 * Innitialise la boite d'erreur Ajax
 	 */
-	$('#_ajaxError').dialog({
+	$('#ajax_error').dialog({
 		title: '&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ' + oLang['ajax_error_title'],
 		modal: true,
 		resizable: false,
@@ -64,11 +64,11 @@ function ajaxLoading(iStatu)
 	 */
 	if ( (iStatu==undefined) || (iStatu==0) )
 	{
-		$('#_ajaxLoading').dialog('close');
+		$('#ajax_loading').dialog('close');
 	}
 	else
 	{
-		$('#_ajaxLoading').dialog('open');
+		$('#ajax_loading').dialog('open');
 	}
 }
 
