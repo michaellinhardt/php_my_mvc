@@ -1,6 +1,6 @@
 <?php
 $DefautLang = array(
-"default_titre" => "Cooliz BackOffice",
+"default_titre" => "Resastock",
 /*
  * Message Ajax par defaut
  */
