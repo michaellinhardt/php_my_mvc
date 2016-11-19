@@ -1,6 +1,7 @@
 <?php
 class CoreAppView
 {
+	public $sRedirect ;
 	public $aView ;
 	public $mSetLayout ;
 	public $mSetView ;
@@ -10,6 +11,12 @@ class CoreAppView
 
 	public function display()
 	{
+		/*
+		** Si le controlleur a donner une valeur a sRedirect, alors on va rediriger la page
+		** cela va stoper la page en cours et rafraichir sur le lien demandé
+		*/
+		if (isset($this->sRedirect))
+			self::redirect();
 		/*
 		 * Parametre permetant à la fonction controlDisplay de vérifier
 		 * que les parametre stipuler dans la config de l'application
@@ -166,7 +173,7 @@ class CoreAppView
 		if ( !is_file( realpath( $sPath ) ) ) DebugAppModel::StopApp( __FILE__, __LINE__, 'Fichier VIEW manquant: ' . $sPath );
 		else $this->mSetView = $sPath ;
 	}
-	
+
 	public function lang()
 	{
 		/*
@@ -177,5 +184,17 @@ class CoreAppView
 			DebugAppModel::StopApp( __FILE__, __LINE__, 'Impossible d\'utiliser la fonction lang() dans la view car USE_LANG_MODEL est false' );
 		else
 			echo $this->oLang->lang(func_get_args());
+	}
+
+	public function redirect()
+	{
+		/*
+		** Si le controlleur a donner une valeur a sRedirect, alors on va rediriger la page
+		** cela va stoper la page en cours et rafraichir sur le lien demandé
+		*/
+		DebugAppModel::logThis( __FILE__, __LINE__, 'Redirection forcé via la method redirect() du CoreAppView' );
+		echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $this->sRedirect . '">';
+		echo "<script type='text/javascript'>document.location.href='{$this->sRedirect}';</script>";
+		exit();
 	}
 }

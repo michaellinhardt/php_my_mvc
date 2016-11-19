@@ -1,6 +1,6 @@
 <?php
 /*
- * Cette class est le "processeur" ou "driver" de l'app, elle commande 
+ * Cette class est le "processeur" ou "driver" de l'app, elle commande
  * les différente class successivement utilisé dans l'app
  * comme le ferais le controller avec le model et la view
  */
@@ -10,6 +10,7 @@ class Bootstrap
 	private $oController ; // Contient la class qui gère les controller
 	private $oView ; // Contient la class qui gère les views
 	private $aView ; // Variable transmit du controller à la view
+	private $sRedirect ; // force une redirection depuis le coreapp de la view (method javascript et meta mais pas header)
 	/*
 	 * *mSetView Détermine l'affichage de la view
 	 * true ou false pour oui et non
@@ -44,7 +45,7 @@ class Bootstrap
 		if (method_exists('PluginAppModel', 'afterConfig')) PluginAppModel::afterConfig();
 		DebugAppModel::resetDebug(); // Reset les log de debuguage
 		DebugAppModel::logDetail(); // Log les détail si la config le demande
-		// Initialise le routage (récupére la class et la method)		
+		// Initialise le routage (récupére la class et la method)
 		if (method_exists('PluginAppModel', 'beforeRoutage')) PluginAppModel::beforeRoutage();
 		$this->setRoutage();
 		if (method_exists('PluginAppModel', 'afterRoutage')) PluginAppModel::afterRoutage();
@@ -100,9 +101,10 @@ class Bootstrap
 		$this->oController->getControllerParam();
 		$this->oController->logThis();
 		/*
-		 * Récupére les variables à transmettre à la view
+		 * Récupére les variables à transmettre à la view (aView, mSetView, mSetLayout, sRedirect)
 		 */
 		if ( isset( $this->oController->aView ) ) $this->aView = $this->oController->aView ;
+		if ( isset( $this->oController->sRedirect ) ) $this->sRedirect = $this->oController->sRedirect ;
 		$this->mSetView = $this->oController->mSetView ;
 		$this->mSetLayout = $this->oController->mSetLayout ;
 	}
@@ -123,6 +125,7 @@ class Bootstrap
 		$this->oView->mSetLayout = $this->mSetLayout ;
 		$this->oView->mSetView = $this->mSetView ;
 		$this->oView->aView = $this->aView ;
+		$this->oView->sRedirect = $this->sRedirect ;
 		/*
 		 * Pilote la class
 		 */

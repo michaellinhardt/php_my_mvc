@@ -1,13 +1,14 @@
 <?php
 class CoreAppController
 {
-	private $sClass ;
-	private $sMethod ;
-	private $oController ;
-	private $bAjaxMethod ;
-	public $aView ;
-	public $mSetLayout ;
-	public $mSetView ;
+	private $sClass;
+	private $sMethod;
+	private $oController;
+	private $bAjaxMethod;
+	public $aView;
+	public $mSetLayout;
+	public $mSetView;
+	public $sRedirect;
 
 	public function setConfig()
 	{
@@ -15,9 +16,9 @@ class CoreAppController
 		 * Configuration requise pour la class
 		 */
 		$this->aView = array();
-		$this->mSetLayout = USE_LAYOUT ;
-		$this->mSetView = USE_VIEW ;
-		$this->bAjaxMethod = false ;
+		$this->mSetLayout = USE_LAYOUT;
+		$this->mSetView = USE_VIEW;
+		$this->bAjaxMethod = false;
 	}
 
 	public function setResponse()
@@ -26,8 +27,8 @@ class CoreAppController
 		 * Récupère la class et methode stoqué dans les var de session
 		 * et les passe au format adéquat pour instancier la class et appeller la methode.
 		 */
-		$this->sClass = $_SESSION['class'] . 'Controller' ;
-		$this->sMethod = $_SESSION['method'] . 'Method' ;
+		$this->sClass = $_SESSION['class'] . 'Controller';
+		$this->sMethod = $_SESSION['method'] . 'Method';
 	}
 
 	public function initResponse()
@@ -74,21 +75,22 @@ class CoreAppController
 	public function getControllerParam()
 	{
 		/*
-		 * Récupére les parametre aView, mSetLayout et mSetView du controller instancié
+		 * Récupére les parametre aView, mSetLayout et mSetView et sRedirect du controller instancié
 		 * uniquement si $this->bAjaxMethod = false (sinon on régle mSetView et mSetLayout sur false automatiquement)
 		 */
 		if ( (isset($this->oController->bAjaxMethod)) && ($this->oController->bAjaxMethod===true) )
 		{
 			DebugAppModel::logThis( __FILE__, __LINE__, 'bAjaxMethod = true (Ajax Method)' );
-			$this->mSetView = false ;
-			$this->mSetLayout = false ;
+			$this->mSetView = false;
+			$this->mSetLayout = false;
 		}
 		else
 		{
-			if (isset($this->oController->mSetView)) $this->mSetView = $this->oController->mSetView ;
-			if (isset($this->oController->mSetLayout)) $this->mSetLayout = $this->oController->mSetLayout ;
+			if (isset($this->oController->mSetView)) $this->mSetView = $this->oController->mSetView;
+			if (isset($this->oController->mSetLayout)) $this->mSetLayout = $this->oController->mSetLayout;
+			if (isset($this->oController->sRedirect)) $this->sRedirect = $this->oController->sRedirect;
 		}
-		if (isset($this->oController->aView)) $this->aView = $this->oController->aView ;
+		if (isset($this->oController->aView)) $this->aView = $this->oController->aView;
 	}
 
 	public function logThis()
@@ -97,12 +99,12 @@ class CoreAppController
 		 * Converti les variables $this->mSetLayout et $this->mSetView
 		 * afin de les inscrire dans le fichier de log
 		 */
-		if ( is_bool( $this->mSetLayout ) ) $sSetLayout = ($this->mSetLayout) ? 'true' : 'false' ;
-		else $sSetLayout = $this->mSetLayout ;
-		if ( is_bool( $this->mSetView ) ) $sSetView = ($this->mSetView) ? 'true' : 'false' ;
-		else $sSetView = $this->mSetView ;
-		$mSetView = $this->mSetView ;
-		$sAView = (empty( $this->aView )) ? 'empty' : 'not empty' ;
+		if ( is_bool( $this->mSetLayout ) ) $sSetLayout = ($this->mSetLayout) ? 'true' : 'false';
+		else $sSetLayout = $this->mSetLayout;
+		if ( is_bool( $this->mSetView ) ) $sSetView = ($this->mSetView) ? 'true' : 'false';
+		else $sSetView = $this->mSetView;
+		$mSetView = $this->mSetView;
+		$sAView = (empty( $this->aView )) ? 'empty' : 'not empty';
 		DebugAppModel::logThis( __FILE__, __LINE__, 'mSetLayout: ' . $sSetLayout . ' - mSetView: ' . $sSetView . ' - aView: ' . $sAView );
 	}
 }

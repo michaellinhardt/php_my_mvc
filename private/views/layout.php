@@ -9,16 +9,8 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo CSS_HTTP; ?>defaut.css">
 		<!-- JQUERY START -->
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<script src="http://code.jquery.com/jquery-3.1.1.min.js"
-			integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-			crossorigin="anonymous"></script>
-		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-			integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-			crossorigin="anonymous"></script>
-		<!-- JQUERY END -->
-		<link rel="stylesheet" type="text/css" href="<?php echo CSS_HTTP; ?>jquery.css">
-		<script type="text/javascript" src="<?php echo JS_HTTP; ?>jquery/jquery.js"></script>
-		<script type="text/javascript" src="<?php echo JS_HTTP; ?>jquery/jqueryui.js"></script>
+		<script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 		<!-- JQUERY END -->
 		<!-- BOOSTRAP START -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -27,17 +19,20 @@
 		<!-- BOOTSTRAP END -->
 		<script type="text/javascript" src="<?php echo JS_HTTP; ?>dump.js"></script>
 		<?php $this->head(); ?>
+		<!-- JS CALL WHEN DOCUMENT IS READY -->
 		<script type="text/javascript">$(document).ready(function(){  });</script>
+		<!-- JS CALL WHEN DOCUMENT IS READY -->
 	</head>
 	<body>
-		<!-- DIV DE CHARGEMENT AJAX ASYNC -->
-		<div id="ajax_loading"></div>
-		<!-- DIV D'ERREUR AJAX -->
-		<div id="ajax_error"><p><?php $this->lang('ajax_error')?></p></div>
-		<!-- DIV DE LA BANNIERE -->
-		<hr class="clear"/>
-		<div id="content">
+		<?php include VIEWS_PATH . '/layout-navbar.php'; // inclue la bar de navigation ?>
+		<div class="container">
 			<?php $this->incView(); ?>
+			<?= $this->aView['test'] ?>
+			<!-- DIV DE CHARGEMENT AJAX ASYNC -->
+			<div id="ajax_loading"></div>
+			<!-- DIV D'ERREUR AJAX -->
+			<div id="ajax_error"><p><?php $this->lang('ajax_error')?></p></div>
+			<!-- DIV DE LA BANNIERE -->
 		</div>
 	</body>
 </html>

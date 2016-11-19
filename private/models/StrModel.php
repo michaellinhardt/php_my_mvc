@@ -12,23 +12,33 @@ class StrModel extends CoreModel
 			$last_space = strrpos($sChaine, " ");
 			$sChaine = substr($sChaine, 0, $last_space).$sSymbol;
 		}
-		
+
 		return $sChaine;
 	}
-	
+
 	public function httpName( $sChaine )
 	{
 		/*
 		 * Transforme une chaine en nom conforme HTTP
 		 */
-		$sChaine = strtr($sChaine, 
-			'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
+		$sChaine = strtr($sChaine,
+			'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
 			'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
      	$sChaine = preg_replace('/([^.a-z0-9]+)/i', '-', $sChaine);
-     	
+
      	return $sChaine ;
 	}
-	
+
+	public function isPost( $sVar )
+	{
+		/*
+		 * Verifie si une var post existe et est remplie
+		 */
+		if (!isset($_POST[$sVar]) || empty($_POST[$sVar]))
+			return 0 ;
+ 		return 1 ;
+	}
+
 	public function is_NumPortable( $sTel )
 	{
 		$sTel = str_replace( '.', '', $sTel );
@@ -49,7 +59,7 @@ class StrModel extends CoreModel
 		if ($sTel=='0612345678') return false ;
 		return $sTel ;
 	}
-	
+
 	public function is_NumFix( $sTel )
 	{
 		$sTel = str_replace( '.', '', $sTel );
@@ -71,19 +81,19 @@ class StrModel extends CoreModel
 		if ($sTel=='0123456789') return false ;
 		return $sTel ;
 	}
-	
+
 	public function strMinLen( $sString, $iLongueur )
 	{
 		if (strlen($sString)<$iLongueur) return false ;
 		else return true ;
 	}
-	
+
 	public function strMaxLen( $sString, $iLongueur )
 	{
 		if (strlen($sString)>$iLongueur) return false ;
 		else return true ;
 	}
-	
+
 	public function isAlphaNum( $sString )
 	{
 		/*
@@ -93,7 +103,7 @@ class StrModel extends CoreModel
 		if (!empty($aResult)) return true ;
 		else return false ;
 	}
-	
+
 	public function isNum( $sString )
 	{
 		/*
@@ -103,13 +113,13 @@ class StrModel extends CoreModel
 		if (!empty($aResult)) return true ;
 		else return false ;
 	}
-	
+
 	public function isMail( $sString )
 	{
 		if ( !filter_var( $sString, FILTER_VALIDATE_EMAIL) ) return false ;
 		else return true ;
 	}
-	
+
 	public function generatePass( $iNbChar )
 	{
 		/*
@@ -128,17 +138,17 @@ class StrModel extends CoreModel
 		}
 		return $sReturn ;
 	}
-	
+
 	function getCleRib($sCodeBanque, $sCodeGuichet, $sNumeroCompte)
 	{
 		// Variables locales
 		$iCleRib = 0;
 		$sCleRib = '';
-		 
+
 		// Calcul de la clé RIB à partir des informations bancaires
 		$sNumeroCompte = strtr(strtoupper($sNumeroCompte), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ','12345678912345678923456789');
 		$iCleRib = 97 - (int) fmod (89 * $sCodeBanque + 15 * $sCodeGuichet + 3 * $sNumeroCompte, 97);
-		 
+
 		// Valeur de retour
 		if($iCleRib<0)
 		{
@@ -148,7 +158,7 @@ class StrModel extends CoreModel
 		{
 			$sCleRib = (string) $iCleRib;
 		}
-		 
+
 		return $sCleRib;
 	}
 }

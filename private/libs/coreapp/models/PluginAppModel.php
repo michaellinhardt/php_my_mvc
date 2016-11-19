@@ -22,13 +22,19 @@ class PluginAppModel
 		/*
 		 * Renvoie vers la page de connexion si on n'est pas connecté ...
 		 */
-		if ( (!isset($_SESSION['user_id'])) || (empty($_SESSION['user_id'])) )
+		if ( (!isset($_SESSION['user_id']) || empty($_SESSION['user_id']))
+		&& strtolower($_SESSION['class']) != 'connexion'
+		&& strtolower($_SESSION['class']) != 'inscription'
+		&& strtolower($_SESSION['class']) != 'e404' )
 		{
-			if ( ( strtolower($_SESSION['class']) != 'connexion' ) && ( strtolower($_SESSION['class']) != 'e404' ) )
-			{
 				header('Location: '. ROOT_HTTP . 'connexion/');
 				exit();
-			}
+		}
+		else if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])
+		&& (strtolower($_SESSION['class']) == 'connexion' || strtolower($_SESSION['class']) == 'inscription') )
+		{
+			header('Location: '. ROOT_HTTP);
+			exit();
 		}
 	}
 	public function beforeController()
@@ -38,6 +44,7 @@ class PluginAppModel
 	public function afterController()
 	{
 	}
+
 	public function beforeView()
 	{
 	}

@@ -8,8 +8,13 @@ $DefautLang = array(
 "ajax_error" => "Une erreur est survenue sur le serveur, contactez l'administrateur pour plus d'informations.",
 "ajax_loading" => "Chargement...",
 /*
- * Menu
+ * Navbar
  */
-"menu_log" => "Logs",
-"menu_deco" => "Deconnexion",
+"navbar_title" => "RESASTOCK",
+
+"DISCONNECT_TITLE" => "Déconnection",
+"DISCONNECT" => "Attention, si votre panier n'est pas validé il sera perdu, êtes vous certain de vouloir vous déconnecter ?",
+
+"REDIRECTION" => "Redirection en cours..",
+
 );

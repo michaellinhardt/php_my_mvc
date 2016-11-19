@@ -3,17 +3,17 @@ if (preg_match('/localhost/si', $_SERVER['SERVER_NAME']))
 {
 	$aDbConfig = array(
 	"host" => "localhost",
-	"name" => "bocooliz",
+	"name" => "resastock",
 	"user" => "root",
-	"pass" => "",
+	"pass" => "root",
 	);
 }
 else
 {
 	$aDbConfig = array(
 	"host" => "localhost",
-	"name" => "bocooliz",
+	"name" => "resastock",
 	"user" => "root",
-	"pass" => "",
+	"pass" => "root",
 	);
 }
